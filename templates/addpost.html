@@ -1,0 +1,54 @@
+<html>
+
+<head>
+
+<style>
+body 
+{background-color: lightblue;
+}
+table
+{background-color: white;
+}
+.content
+{
+position: fixed;
+left: 50%;
+/* bring your own prefixes */
+transform: translate(-50%);
+}
+</style>
+
+<title>Add Post</title>
+
+</head>
+
+<body>
+
+ <form action="/dashboard">
+ <input type="submit" value="Return to Dashboard">
+ </form>
+
+ <form action="/logout">
+ <input type="submit" value="Log Off">
+ </form>
+
+ {% for message in get_flashed_messages() %}
+ <div class=flash>{{ message }}</div>
+ {% endfor %}
+
+ <div class="content">
+
+ <h1>Add Post to Database</h1>
+ 
+ <form action="/post/add" method="post">
+  <p>Enter Date: <input type="text" name="published_date"></p>
+  <p>Enter Title: <input type="text" name="title"></p>
+  <p>Enter Author: <input type='text' name="author"></P>
+  <p>Enter Post Text: <textarea rows="7" cols="50" name="post_text"></textarea></p>
+  <input type="submit" value="Enter">
+ </form>
+
+ </div>
+
+</body>
+</html>

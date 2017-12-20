@@ -1,0 +1,55 @@
+<html>
+
+<head>
+
+<style> 
+body 
+{background-color: lightblue;
+}
+.content
+{
+position: fixed;
+left: 50%;
+/* bring your own prefixes */
+transform: translate(-50%);
+}
+</style>
+
+<title>Edit Post</title>
+
+</head>
+
+<body>
+
+  <form action="/dashboard">
+ <input type="submit" value="Return to Dashboard">
+ </form>
+
+
+ <form action="/logout">
+ <input type="submit" value="Log Off">
+ </form>
+
+ {% for message in get_flashed_messages() %}
+ <div class=flash>{{ message }}</div>
+ {% endfor %}
+
+ <div class="content">
+
+ <h1>Change a Post in the Database</h1>
+
+
+<form action="/post/edit/{{ post_id }}" id="post" method="post">
+  {% for post in change_post %}
+  <p>Date: <input type="text" id="date" name="date" value="{{ post.date }}"></p>
+  <p>Title: <input type="text" id="title" name="title" value="{{ post.title }}"></p>
+  <p>Author: <input type="text" id="author" name="author" value="{{ post.author }}"></p>
+  <p>Content: <textarea rows="5" cols="40" name="content" form="post"> {{ post.content }}</textarea></p>
+  {% endfor %}
+ <input type="submit" value="Update">
+ </form>
+
+ </div>
+
+</body>
+</html>

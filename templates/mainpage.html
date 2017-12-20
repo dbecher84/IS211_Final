@@ -1,0 +1,65 @@
+<html>
+
+<head>
+
+<style> 
+body 
+{background-color: lightblue;
+}
+table
+{background-color: white;
+}
+.content
+{
+position: fixed;
+left: 50%;
+/* bring your own prefixes */
+transform: translate(-50%);
+}
+textarea
+{text-align: center;
+}
+</style>
+
+<div class="content">
+
+<title>My Blog App</title>
+
+</div>
+
+</head>
+
+<body>
+
+
+ <form action="/login">
+ <input type="submit" value="Login">
+ </form>
+
+ <div class="content">
+
+ <h2>My Blog Posts</h2>
+
+ <table name="posts" border = "1" centered>
+  <tr>
+  <th colspan="5" style="text-align: center">Posts</th>
+  </tr>
+  <tr>
+  <th>Date</th><th>Title</th><th>Author</th><th>Post Contents</th>
+  </tr>
+  {% for posts in posts %}
+  <tr align="center">
+  <td>{{ posts.pub_date }}</td><td>{{ posts.title }}</td><td>{{ posts.author }}</td>
+  <td><textarea rows="10" cols="100" name="post_text">{{ posts.content }}</textarea></td>
+  </tr>
+  {% else %}
+  <h2>No Blog entries</h2>
+  {% endfor %}
+ </table>
+  
+ </div>
+
+</body>
+
+</html>
+

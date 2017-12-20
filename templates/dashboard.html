@@ -1,0 +1,69 @@
+<html>
+
+<head>
+
+<style> 
+body 
+{background-color: lightblue;
+}
+table
+{background-color: white;
+}
+.content
+{
+position: fixed;
+left: 50%;
+/* bring your own prefixes */
+transform: translate(-50%);
+}
+textarea
+{text-align: center;
+}
+</style>
+
+<title>Class Dashboard</title>
+
+</head>
+
+<body>
+
+ {% for message in get_flashed_messages() %}
+ <div class=flash>{{ message }}</div>
+ {% endfor %}
+
+ <form action="/logout">
+ <input type="submit" value="Log Off">
+ </form>
+
+ <div class="content">
+
+ <h2>What's on your mind?</h2>
+ <form action="/post/add">
+ <input type="submit" value="Add Post">
+ </form>
+
+ <table name="posts" border = "1" centered>
+  <tr>
+  <th colspan="7" style="text-align: center">Posts</th>
+  </tr>
+  <tr>
+  <th>ID</th><th>Date</th><th>Title</th><th>Author</th><th>Post Contents</th><th>Edit</th><th>Delete</th>
+  </tr>
+  {% for posts in posts %}
+  <tr align="center">
+  <td>{{ posts.post_id }}</td><td>{{ posts.pub_date }}</td><td>{{ posts.title }}</td><td>{{ posts.author }}</td>
+  <td><textarea rows="5" cols="40" name="post_text">{{ posts.content }}</textarea></td>
+  <td><a href="/post/edit/{{ posts.post_id }}" <input type="submit" value="Edit Post" class="button"> Edit Post</a></td>
+  <td><a href="/post/delete/{{ posts.post_id }}" <input type="submit" value="Edit Post" class="button"> Delete Post</a></td>
+  </tr>
+  {% else %}
+  <h2>No Blog entries</h2>
+  {% endfor %}
+ </table>
+ 
+ </div>
+	
+</body>
+
+</html>
+
