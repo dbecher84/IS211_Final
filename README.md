@@ -1,2 +1,2 @@
 # IS211_Final
-web application
+a blogging application
